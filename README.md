@@ -1,2 +1,0 @@
-# nazdos
-project
