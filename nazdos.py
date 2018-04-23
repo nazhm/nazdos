@@ -41,10 +41,9 @@ with open('nazdosconfig.csv', 'r') as nazdosConfig :
 			emailBody = line.replace('Email message: ','').strip()
 		if line.startswith('Print graphs dashboard each detection: '):
 			printGraphs = line.replace('Print graphs dashboard each detection: ','').strip()
-
+nazdosConfig.close()
 
 #----------open/read log----------#
-#log = open('www-access_copy.log','r') #open log
 log = open(logName,'r') #open log
 read = log.read() #read log
 
@@ -104,10 +103,12 @@ with open('currentRun.csv', 'wb') as csvfile:
     writer.writerow(header)
     for i in statusCodesCounter:
         writer.writerow((i, statusCodesCounter[i]))
+csvfile.close()
+
 #---Also print the total number of requests to the CSV file---#
 f = open('currentRun.csv','a')
 print >>f, 'Total,' + str(newTotal)
-
+f.close()
 
 slowlorisPrev = 0
 httpfloodPrev = 0
@@ -348,12 +349,3 @@ if (str(emailEvent) == 'y' and str(httpfloodPrev) == '1') or (str(emailEvent) ==
 
 #----------Date, Time----------#
 print (time.strftime("%d/%m/%Y, %H:%M:%S"))
-
-
-
-
-
-
-
-
-
